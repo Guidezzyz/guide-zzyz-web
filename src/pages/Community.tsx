@@ -1,7 +1,7 @@
 import React from 'react';
 // 1. 导入组件（注意路径要指向你的 PostViewer 文件）
 
-import PostViewer from '../community/posts/postviewer';
+import PostViewer from '../community/posts/PostViewer';
 
 const Community: React.FC = () => {
   return (
