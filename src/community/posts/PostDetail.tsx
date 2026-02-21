@@ -66,7 +66,8 @@ const PostDetail = () => {
             color: "#333",
         }}
         >
-        这里是帖子正文内容区域。
+        {/* 这里放回你原来的正文渲染 */}
+        <ReactMarkdown>{content}</ReactMarkdown>
         </div>
     </div>
     );
