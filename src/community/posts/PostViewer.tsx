@@ -14,7 +14,7 @@ const PostViewer: React.FC = () => {
 
   useEffect(() => {
     // 假设 XML 放在 data 目录下
-    fetch('/data/post1.xml')
+    fetch('./data/post1.xml')
       .then(response => response.text())
       .then(xmlString => {
         const parser = new DOMParser();
