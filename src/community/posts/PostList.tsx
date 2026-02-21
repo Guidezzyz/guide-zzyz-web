@@ -41,17 +41,63 @@ const PostList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>帖子列表</h2>
-      <ul>
-        {posts.map(post => (
-          <li key={post.slug}>
-            <Link to={post.slug}>
+    <div
+      style={{
+        maxWidth: "900px",
+        margin: "0 auto",
+        paddingTop: "40px",
+        paddingBottom: "60px",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+      }}
+    >
+      <h2
+        style={{
+          fontSize: "18px",
+          fontWeight: "600",
+          marginBottom: "24px",
+          color: "#2c3e50",
+        }}
+      >
+        社区帖子
+      </h2>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        {posts.map((post) => (
+          <Link
+            key={post.slug}
+            to={post.slug}
+            style={{
+              textDecoration: "none",
+              border: "1px solid #e5e7eb",
+              borderRadius: "8px",
+              padding: "16px 20px",
+              transition: "all 0.2s ease",
+              backgroundColor: "#ffffff",
+            }}
+          >
+            <div
+              style={{
+                fontSize: "14px",
+                fontWeight: "500",
+                color: "#2c3e50",
+                marginBottom: "6px",
+              }}
+            >
               {post.title}
-            </Link>
-          </li>
+            </div>
+
+            <div
+              style={{
+                fontSize: "12px",
+                color: "rgba(0,0,0,0.5)",
+              }}
+            >
+              点击查看详情 →
+            </div>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
