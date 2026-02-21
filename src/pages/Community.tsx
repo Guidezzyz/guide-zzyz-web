@@ -1,6 +1,7 @@
 import React from 'react';
 // 1. 导入组件（注意路径要指向你的 PostBrowser 文件）
-import PostBrowser from '../community/posts/PostViewer'; 
+
+import PostViewer from '../community/posts/PostViewer';
 
 const Community: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Community: React.FC = () => {
       
       <main>
         {/* 2. 像使用 HTML 标签一样调用它 */}
-        <PostBrowser />
+        <PostViewer />
       </main>
     </div>
   );
