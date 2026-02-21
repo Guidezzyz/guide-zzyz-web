@@ -1,21 +1,14 @@
-import React from 'react';
-// 1. 导入组件（注意路径要指向你的 PostViewer 文件）
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import PostList from "../community/posts/PostList"
+import PostDetail from "../community/posts/PostDetail"
 
-import PostViewer from '../community/posts/PostViewer';
-
-const Community: React.FC = () => {
+export default function community() {
   return (
-    <div className="Community">
-      <header>
-        <h1>我的社交应用</h1>
-      </header>
-      
-      <main>
-        {/* 2. 像使用 HTML 标签一样调用它 */}
-        <PostViewer />
-      </main>
-    </div>
-  );
-};
-
-export default Community;
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<PostList />} />
+        <Route path="/post/:slug" element={<PostDetail />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}

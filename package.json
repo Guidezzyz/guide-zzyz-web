@@ -46,6 +46,7 @@
             "react-markdown": "^10.1.0",
             "react-resizable-panels": "^2.1.7",
             "react-router": "*",
+            "react-router-dom": "^7.13.0",
             "recharts": "^2.15.2",
             "sonner": "^2.0.3",
             "tailwind-merge": "*",

@@ -1,6 +1,6 @@
 ---
-title: "React 与 TypeScript 实战指南"
-author: "阿北"
+title: "指南酱2"
+author: "老秦2"
 date: "2026-02-21"
 ---
 
