@@ -10,7 +10,10 @@ const PostList = () => {
   const [posts, setPosts] = useState<PostMeta[]>([]);
 
   useEffect(() => {
-    const modules = import.meta.glob("../../communitydata/posts/*.md", { as: "raw" });
+    const modules = import.meta.glob("./posts/*.md", {
+      query: "?raw",
+      import: "default",
+    });
 
     Promise.all(
       Object.entries(modules).map(async ([path, resolver]) => {
