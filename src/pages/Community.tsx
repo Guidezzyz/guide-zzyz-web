@@ -1,14 +1,12 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import PostList from "../community/posts/PostList"
-import PostDetail from "../community/posts/PostDetail"
+import { Outlet } from "react-router-dom";
 
-export default function community() {
+export default function Community() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<PostList />} />
-        <Route path="/post/:slug" element={<PostDetail />} />
-      </Routes>
-    </BrowserRouter>
-  )
+    <div>
+      <h1>社区</h1>
+
+      {/* 这里是子路由显示的位置 */}
+      <Outlet />
+    </div>
+  );
 }
