@@ -26,10 +26,50 @@ const PostDetail = () => {
   if (!content) return <div>加载中...</div>;
 
   return (
-    <div>
-      <ReactMarkdown>{content}</ReactMarkdown>
+    <div
+        style={{
+        maxWidth: "800px",
+        margin: "0 auto",
+        paddingTop: "40px",
+        paddingBottom: "80px",
+        paddingLeft: "20px",
+        paddingRight: "20px",
+        }}
+    >
+        <div
+        onClick={() => window.history.back()}
+        style={{
+            fontSize: "12px",
+            color: "rgba(0,0,0,0.5)",
+            marginBottom: "20px",
+            cursor: "pointer",
+        }}
+        >
+        ← 返回列表
+        </div>
+
+        <h1
+        style={{
+            fontSize: "22px",
+            fontWeight: "600",
+            marginBottom: "24px",
+            color: "#2c3e50",
+        }}
+        >
+        {slug}
+        </h1>
+
+        <div
+        style={{
+            fontSize: "14px",
+            lineHeight: "1.8",
+            color: "#333",
+        }}
+        >
+        这里是帖子正文内容区域。
+        </div>
     </div>
-  );
+    );
 };
 
 export default PostDetail;
