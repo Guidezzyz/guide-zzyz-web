@@ -15,28 +15,31 @@ const PostViewer: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 模拟从服务器或本地路径获取文件
-    fetch('/posts/post1.md')
-      .then((response) => response.text())
-      .then((text) => {
-        // 使用 gray-matter 解析元数据和正文
-        const { data, content } = matter(text);
-        setPost({
-          title: data.title,
-          author: data.author,
-          date: data.date,
-          content: content,
-        });
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("加载 Markdown 失败:", err);
-        setLoading(false);
-      });
-  }, []);
+  fetch('/posts/post1.md')
+    .then((response) => {
+      console.log("status:", response.status)
+      return response.text()
+    })
+    .then((text) => {
+      console.log("text length:", text.length)
 
-  if (loading) return <div>正在加载帖子...</div>;
-  if (!post) return <div>找不到帖子内容。</div>;
+      const { data, content } = matter(text)
+      console.log("data:", data)
+
+      setPost({
+        title: data.title || "测试标题",
+        author: data.author || "测试作者",
+        date: data.date || "",
+        content: content || "测试内容",
+      })
+
+      setLoading(false)
+    })
+    .catch((err) => {
+      console.error("catch:", err)
+      setLoading(false)
+    })
+}, [])
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
