@@ -7,7 +7,7 @@ const PostDetail = () => {
   const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    const modules = import.meta.glob("./posts/*.md", {
+    const modules = import.meta.glob("../../communitydata/posts/*.md", {
         query: "?raw",
         import: "default",
         });
