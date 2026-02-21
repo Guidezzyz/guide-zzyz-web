@@ -70,6 +70,7 @@ export default function Navbar() {
   const navLinks = [
     { path: "/", label: "首页" },
     { path: "/submit", label: "投稿" },
+    { path: "/community", label: "论坛" },
     { path: "/join-us", label: "加入我们" },
   ];
 
