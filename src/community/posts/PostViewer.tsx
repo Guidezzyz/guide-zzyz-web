@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import matter from 'gray-matter';
+import { Buffer } from 'buffer';
+window.Buffer = window.Buffer || Buffer;
 
 // 定义 Post 的类型结构
 interface PostData {
