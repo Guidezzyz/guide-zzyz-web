@@ -46,7 +46,7 @@ const PostList = () => {
       <ul>
         {posts.map(post => (
           <li key={post.slug}>
-            <Link to={`/post/${post.slug}`}>
+            <Link to={post.slug}>
               {post.title}
             </Link>
           </li>
