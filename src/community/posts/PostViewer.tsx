@@ -1,65 +1,59 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import matter from 'gray-matter';
 
-// 定义帖子类型
-interface Post {
-  id: string;
+// 定义 Post 的类型结构
+interface PostData {
+  title: string;
   author: string;
+  date: string;
   content: string;
-  timestamp: string;
 }
 
 const PostViewer: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [post, setPost] = useState<PostData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 假设 XML 放在 data 目录下
-    fetch('./data/post1.xml')
-      .then(response => response.text())
-      .then(xmlString => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-        const postNodes = xmlDoc.getElementsByTagName("post");
-
-        const parsedPosts: Post[] = Array.from(postNodes).map(node => ({
-          id: node.getAttribute('id') || '',
-          author: node.getElementsByTagName('author')[0]?.textContent || '',
-          content: node.getElementsByTagName('content')[0]?.textContent || '',
-          timestamp: node.getElementsByTagName('timestamp')[0]?.textContent || '',
-        }));
-
-        setPosts(parsedPosts);
+    // 模拟从服务器或本地路径获取文件
+    fetch('/post1.md') 
+      .then((response) => response.text())
+      .then((text) => {
+        // 使用 gray-matter 解析元数据和正文
+        const { data, content } = matter(text);
+        setPost({
+          title: data.title,
+          author: data.author,
+          date: data.date,
+          content: content,
+        });
         setLoading(false);
       })
-      .catch(err => {
-        console.error("加载 XML 出错:", err);
+      .catch((err) => {
+        console.error("加载 Markdown 失败:", err);
         setLoading(false);
       });
   }, []);
 
   if (loading) return <div>正在加载帖子...</div>;
+  if (!post) return <div>找不到帖子内容。</div>;
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h1>帖子浏览器</h1>
-      <hr />
-      {posts.map(post => (
-        <div key={post.id} style={cardStyle}>
-          <h3>{post.author} <small style={{ color: '#888' }}>{post.timestamp}</small></h3>
-          <p>{post.content}</p>
-        </div>
-      ))}
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+      {/* 头部信息 */}
+      <header style={{ borderBottom: '1px solid #eee', marginBottom: '20px' }}>
+        <h1>{post.title}</h1>
+        <p style={{ color: '#666' }}>
+          <strong>作者:</strong> {post.author} | <strong>发布日期:</strong> {post.date}
+        </p>
+      </header>
+
+      {/* Markdown 正文渲染 */}
+      <article className="markdown-body">
+        <ReactMarkdown>{post.content}</ReactMarkdown>
+      </article>
     </div>
   );
-};
-
-// 简单的样式
-const cardStyle: React.CSSProperties = {
-  border: '1px solid #ddd',
-  borderRadius: '8px',
-  padding: '15px',
-  margin: '10px 0',
-  boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
 };
 
 export default PostViewer;
