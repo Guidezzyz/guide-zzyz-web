@@ -85,6 +85,18 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="/community"
+                  style={{
+                    fontSize: "12px",
+                    color: "rgba(255, 255, 255, 0.7)",
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  论坛
+                </a>
+              </li>
+              <li>
+                <a
                   href="/join-us"
                   style={{
                     fontSize: "12px",
