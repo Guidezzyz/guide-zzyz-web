@@ -8,7 +8,7 @@ import { useIsMobile } from "./ui/use-mobile";
 
 export default function Footer() {
   const isMobile = useIsMobile();
-
+  return <div>TEST</div>
   return (
     <footer
       style={{
