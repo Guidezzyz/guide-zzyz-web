@@ -16,7 +16,7 @@ const PostViewer: React.FC = () => {
 
   useEffect(() => {
     // 模拟从服务器或本地路径获取文件
-    fetch('/post1.md') 
+    fetch('./data/post1.md')
       .then((response) => response.text())
       .then((text) => {
         // 使用 gray-matter 解析元数据和正文
