@@ -6,37 +6,17 @@ interface PostMeta {
   slug: string;
 }
 
-const POST_FILES = ["post1.md", "post2.md"]; // 手动列出 public/posts 里的文件
-
 const PostList = () => {
   const [posts, setPosts] = useState<PostMeta[]>([]);
 
   useEffect(() => {
-    Promise.all(
-      POST_FILES.map(async (fileName) => {
-        const res = await fetch(`/posts/${fileName}`);
-        const text = await res.text();
-
-        // 解析 YAML 样式的 meta
-        const parts = text.split("---");
-        const metaBlock = parts[1] || "";
-
-        const data: any = {};
-        metaBlock.split("\n").forEach(line => {
-          const [key, ...rest] = line.split(":");
-          if (key && rest.length) {
-            data[key.trim()] = rest.join(":").trim();
-          }
-        });
-
-        const slug = fileName.replace(".md", "");
-
-        return {
-          title: data.title || "无标题",
-          slug
-        };
-      })
-    ).then(setPosts);
+    // fetch 公共 JSON 文件
+    fetch("/posts/posts.json")
+      .then(res => res.json())
+      .then((data: PostMeta[]) => setPosts(data))
+      .catch(() => {
+        console.error("无法加载帖子列表");
+      });
   }, []);
 
   return (
