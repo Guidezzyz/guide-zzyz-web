@@ -26,8 +26,8 @@ app.get("/comments/:id", (req, res) => {
 // 新增评论
 app.post("/comments/:id", (req, res) => {
   const filePath = path.join(
-    __dirname,
-    "../public/comments",
+    process.cwd(),
+    "public/comments",
     `${req.params.id}.json`
   )
 
