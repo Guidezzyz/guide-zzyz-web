@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-
+import CommentBox from "../comments/CommentBox"
 const PostDetail = () => {
   const { slug } = useParams();
   const [content, setContent] = useState<string>("");
@@ -68,6 +68,12 @@ const PostDetail = () => {
       >
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
+      {/* 评论区 */}
+      {slug && (
+        <div style={{ marginTop: "60px" }}>
+          <CommentBox postId={Number(slug)} />
+        </div>
+      )}
     </div>
   );
 };

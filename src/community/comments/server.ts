@@ -1,62 +1,53 @@
-import express from 'express';
-import fs from 'fs';
-import cors from 'cors';
+import express from "express"
+import cors from "cors"
+import fs from "fs"
+import path from "path"
 
-const app = express();
-app.use(cors());
+const app = express()
+app.use(cors())
+app.use(express.json())
 
-// Express 内置 JSON 解析
-app.use(express.json());
+// 读取评论
+app.get("/comments/:id", (req, res) => {
+  const filePath = path.join(
+    process.cwd(),
+    "public/comments",
+    `${req.params.id}.json`
+  )
 
-// JSON 文件路径
-const COMMENTS_FILE = '../../communitydata/comments.json';
+  if (!fs.existsSync(filePath)) {
+    return res.json([])
+  }
 
-// 定义评论类型
-interface Comment {
-  id: number;
-  post_id: number;
-  user: string;
-  content: string;
-  created_at: string;
-  parent_id: number | null;
-}
+  const data = fs.readFileSync(filePath, "utf-8")
+  res.json(JSON.parse(data))
+})
 
-// 获取指定帖子的评论
-app.get('/comments/:postId', (req, res) => {
-  const postId = Number(req.params.postId);
+// 新增评论
+app.post("/comments/:id", (req, res) => {
+  const filePath = path.join(
+    __dirname,
+    "../public/comments",
+    `${req.params.id}.json`
+  )
 
-  // 读取 JSON 文件并指定类型
-  const data = fs.readFileSync(COMMENTS_FILE, 'utf-8');
-  const comments: Comment[] = JSON.parse(data);
+  let comments = []
 
-  // 明确回调类型
-  const filteredComments = comments.filter((c: Comment) => c.post_id === postId);
+  if (fs.existsSync(filePath)) {
+    comments = JSON.parse(fs.readFileSync(filePath, "utf-8"))
+  }
 
-  res.json(filteredComments);
-});
+  const newComment = {
+    id: Date.now(),
+    content: req.body.content
+  }
 
-// 添加评论
-app.post('/comments', (req, res) => {
-  const { post_id, user, content, parent_id } = req.body;
+  comments.push(newComment)
+  fs.writeFileSync(filePath, JSON.stringify(comments, null, 2))
 
-  const data = fs.readFileSync(COMMENTS_FILE, 'utf-8');
-  const comments: Comment[] = JSON.parse(data);
+  res.json(newComment)
+})
 
-  const newComment: Comment = {
-    id: comments.length + 1,
-    post_id,
-    user,
-    content,
-    created_at: new Date().toISOString(),
-    parent_id: parent_id || null
-  };
-
-  comments.push(newComment);
-
-  // 写回 JSON 文件
-  fs.writeFileSync(COMMENTS_FILE, JSON.stringify(comments, null, 2));
-
-  res.json(newComment);
-});
-
-app.listen(3001, () => console.log('Server running on port 3001'));
+app.listen(3001, () => {
+  console.log("server running at 3001")
+})
