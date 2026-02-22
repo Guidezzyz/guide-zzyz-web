@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import fs from "fs"
 import path from "path"
-
+//另外开了一个3001端口的服务器来处理评论数据，前端通过fetch请求这个服务器来获取和提交评论数据
 const app = express()
 app.use(cors())
 app.use(express.json())

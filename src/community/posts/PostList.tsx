@@ -33,13 +33,28 @@ const PostList = () => {
             style={{
               textDecoration: "none",
               border: "1px solid #e5e7eb",
-              borderRadius: "8px",
-              padding: "16px 20px",
+              borderRadius: "12px",
+              padding: "20px 24px",
               transition: "all 0.2s ease",
               backgroundColor: "#ffffff",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.08)";
+              e.currentTarget.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.04)";
+              e.currentTarget.style.transform = "translateY(0)";
             }}
           >
-            <div style={{ fontSize: "14px", fontWeight: "500", color: "#2c3e50", marginBottom: "6px" }}>
+            <div style={{ 
+              fontSize: "16px", 
+            fontWeight: "500", 
+            color: "#2c3e50", 
+            marginBottom: "6px" ,
+            lineHeight: "1.6"
+            }}>
               {post.title}
             </div>
             <div style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)" }}>
