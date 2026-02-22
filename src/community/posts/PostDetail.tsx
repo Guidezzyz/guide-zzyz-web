@@ -91,7 +91,7 @@ const PostDetail = () => {
       {slug && (
         <div
           style={{
-            background: "#ffffff",
+            background: "#f9fafb",
             borderRadius: "16px",
             padding: "30px",
             boxShadow: "0 6px 20px rgba(0,0,0,0.04)",
