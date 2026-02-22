@@ -13,7 +13,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [input, setInput] = useState("")
   useEffect(() => {
-    fetch(`http://localhost:3000/comments/${postId}`)
+    fetch(`http://localhost:3001/comments/${postId}`)
       //the link should be specified in the .env file, and the server should be started separately
       .then(res => res.json())
       .then(setComments)
@@ -23,7 +23,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
     if (!input.trim()) return
 
     const res = await fetch(
-      `http://localhost:3000/comments/${postId}`,
+      `http://localhost:3001/comments/${postId}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
