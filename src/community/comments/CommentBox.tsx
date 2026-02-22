@@ -39,24 +39,77 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
 
   return (
     <div>
-      <h3>Comments</h3>
+      <h3 style={{
+        fontSize: "18px",
+        fontWeight: "600",
+        marginBottom: "20px",
+        color: "#1f2937"
+      }}>
+        评论
+      </h3>
 
+      {/* 评论列表 */}
       <div>
-        {comments.map(c => (
-          <div key={c.id}>
-            {c.content}
+        {comments.map((c, index) => (
+          <div
+            key={c.id}
+            style={{
+              padding: "20px 0",
+              borderTop: index === 0 ? "none" : "1px solid #e5e7eb",
+            }}
+          >
+            <div style={{
+              fontSize: "14px",
+              lineHeight: "1.8",
+              color: "#374151"
+            }}>
+              {c.content}
+            </div>
           </div>
         ))}
       </div>
 
-      <div>
-        <input
-          type="text"
+      {/* 输入区域 */}
+      <div style={{ marginTop: "30px" }}>
+        <textarea
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder="Write a comment..."
+          style={{
+            width: "100%",
+            minHeight: "120px",
+            padding: "14px",
+            fontSize: "14px",
+            lineHeight: "1.6",
+            borderRadius: "10px",
+            border: "1px solid #e5e7eb",
+            resize: "vertical",
+            marginBottom: "16px",
+            outline: "none"
+          }}
         />
-        <button onClick={handleSubmit}>Send</button>
+
+        <button
+          onClick={handleSubmit}
+          style={{
+            background: "#2563eb",
+            color: "#ffffff",
+            border: "none",
+            padding: "10px 18px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontSize: "14px",
+            transition: "all 0.2s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "#1d4ed8"
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "#2563eb"
+          }}
+        >
+          发送
+        </button>
       </div>
     </div>
   )
