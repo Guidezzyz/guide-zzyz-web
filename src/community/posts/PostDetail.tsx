@@ -29,20 +29,30 @@ const PostDetail = () => {
     <div
       style={{
         maxWidth: "800px",
-        margin: "0 auto",
-        paddingTop: "40px",
-        paddingBottom: "80px",
-        paddingLeft: "20px",
-        paddingRight: "20px",
+        margin: "40px auto",
+        padding: "40px 24px 80px 24px",
+        background: "#ffffff",
+        borderRadius: "16px",
+        boxShadow: "0 8px 30px rgba(0,0,0,0.05)",
       }}
     >
       <div
         onClick={() => window.history.back()}
         style={{
-          fontSize: "12px",
-          color: "rgba(0,0,0,0.5)",
-          marginBottom: "20px",
+          fontSize: "13px",
+          color: "rgba(0,0,0,0.45)",
+          marginBottom: "30px",
           cursor: "pointer",
+          display: "inline-block",
+          transition: "all 0.2s ease",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = "#2c3e50";
+          e.currentTarget.style.transform = "translateX(-2px)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = "rgba(0,0,0,0.45)";
+          e.currentTarget.style.transform = "translateX(0)";
         }}
       >
         ← 返回列表
@@ -50,20 +60,22 @@ const PostDetail = () => {
 
       <h1
         style={{
-          fontSize: "22px",
-          fontWeight: "600",
-          marginBottom: "24px",
-          color: "#2c3e50",
-        }}
+        fontSize: "28px",
+        fontWeight: "700",
+        marginBottom: "30px",
+        color: "#1f2937",
+        lineHeight: "1.4",
+      }}
       >
         {slug}
       </h1>
 
       <div
         style={{
-          fontSize: "14px",
-          lineHeight: "1.8",
-          color: "#333",
+          fontSize: "16px",
+          lineHeight: "1.9",
+          color: "#374151",
+          maxWidth: "680px",
         }}
       >
         <ReactMarkdown>{content}</ReactMarkdown>
