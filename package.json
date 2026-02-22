@@ -61,7 +61,7 @@
             "vite": "6.3.5"
       },
       "scripts": {
-            "dev": "concurrently \"vite\" \"ts-node src/community/comments/server.ts\"",
+            "dev": "vite",
             "build": "vite build"
       }
 }
