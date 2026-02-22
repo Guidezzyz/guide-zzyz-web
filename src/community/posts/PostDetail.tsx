@@ -71,7 +71,7 @@ const PostDetail = () => {
       {/* 评论区 */}
       {slug && (
         <div style={{ marginTop: "60px" }}>
-          <CommentBox postId={Number(slug)} />
+          <CommentBox postId={slug} />
         </div>
       )}
     </div>

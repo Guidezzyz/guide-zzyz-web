@@ -6,15 +6,15 @@ interface Comment {
 }
 
 interface CommentBoxProps {
-  postId: number
+  postId: string
 }
 
 const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [input, setInput] = useState("")
-
   useEffect(() => {
     fetch(`http://localhost:3000/comments/${postId}`)
+      //the link should be specified in the .env file, and the server should be started separately
       .then(res => res.json())
       .then(setComments)
   }, [postId])
