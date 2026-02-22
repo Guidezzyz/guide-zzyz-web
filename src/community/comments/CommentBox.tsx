@@ -55,7 +55,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
             key={c.id}
             style={{
               padding: "20px 0",
-              borderTop: index === 0 ? "none" : "1px solid #e5e7eb",
+              borderTop: index === 0 ? "none" : "3px solid #e5e7eb",
             }}
           >
             <div style={{
@@ -82,7 +82,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
             fontSize: "14px",
             lineHeight: "1.6",
             borderRadius: "10px",
-            border: "1px solid #e5e7eb",
+            border: "5px solid #e5e7eb",
             resize: "vertical",
             marginBottom: "16px",
             outline: "none"

@@ -86,27 +86,17 @@ const PostDetail = () => {
       <hr style={{
         margin: "60px 0 40px 0",
         border: "none",
-        borderTop: "1px solid #e5e7eb"
+        borderTop: "3px solid #185adcff"
       }} />
       {slug && (
         <div
           style={{
-            background: "#f9fafb",
+            background: "#65696dff",
             borderRadius: "16px",
             padding: "30px",
             boxShadow: "0 6px 20px rgba(0,0,0,0.04)",
           }}
         >
-          <h2
-            style={{
-              fontSize: "18px",
-              fontWeight: "600",
-              marginBottom: "20px",
-              color: "#1f2937",
-            }}
-          >
-            评论
-          </h2>
 
           <CommentBox postId={slug} />
         </div>
