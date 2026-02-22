@@ -40,10 +40,10 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
   return (
     <div>
       <h3 style={{
-        fontSize: "18px",
+        fontSize: "22px",
         fontWeight: "600",
         marginBottom: "20px",
-        color: "#1f2937"
+        color: "#e8ebefff"
       }}>
         评论
       </h3>
@@ -61,7 +61,7 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
             <div style={{
               fontSize: "14px",
               lineHeight: "1.8",
-              color: "#374151"
+              color: "#b9ccebff"
             }}>
               {c.content}
             </div>
