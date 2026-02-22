@@ -6,21 +6,20 @@ interface PostMeta {
   slug: string;
 }
 
+const POST_FILES = ["post1.md", "post2.md"]; // 手动列出 public/posts 里的文件
+
 const PostList = () => {
   const [posts, setPosts] = useState<PostMeta[]>([]);
 
   useEffect(() => {
-    const modules = import.meta.glob("../../communitydata/posts/*.md", {
-      query: "?raw",
-      import: "default",
-    });
-
     Promise.all(
-      Object.entries(modules).map(async ([path, resolver]) => {
-        const text: string = await resolver() as string;
+      POST_FILES.map(async (fileName) => {
+        const res = await fetch(`/posts/${fileName}`);
+        const text = await res.text();
 
+        // 解析 YAML 样式的 meta
         const parts = text.split("---");
-        const metaBlock = parts[1];
+        const metaBlock = parts[1] || "";
 
         const data: any = {};
         metaBlock.split("\n").forEach(line => {
@@ -30,7 +29,7 @@ const PostList = () => {
           }
         });
 
-        const slug = path.split("/").pop()?.replace(".md", "") || "";
+        const slug = fileName.replace(".md", "");
 
         return {
           title: data.title || "无标题",
@@ -41,24 +40,8 @@ const PostList = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "0 auto",
-        paddingTop: "40px",
-        paddingBottom: "60px",
-        paddingLeft: "20px",
-        paddingRight: "20px",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "18px",
-          fontWeight: "600",
-          marginBottom: "24px",
-          color: "#2c3e50",
-        }}
-      >
+    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px 20px 60px 20px" }}>
+      <h2 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "24px", color: "#2c3e50" }}>
         社区帖子
       </h2>
 
@@ -76,23 +59,10 @@ const PostList = () => {
               backgroundColor: "#ffffff",
             }}
           >
-            <div
-              style={{
-                fontSize: "14px",
-                fontWeight: "500",
-                color: "#2c3e50",
-                marginBottom: "6px",
-              }}
-            >
+            <div style={{ fontSize: "14px", fontWeight: "500", color: "#2c3e50", marginBottom: "6px" }}>
               {post.title}
             </div>
-
-            <div
-              style={{
-                fontSize: "12px",
-                color: "rgba(0,0,0,0.5)",
-              }}
-            >
+            <div style={{ fontSize: "12px", color: "rgba(0,0,0,0.5)" }}>
               点击查看详情 →
             </div>
           </Link>
