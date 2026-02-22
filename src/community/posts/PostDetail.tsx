@@ -36,27 +36,28 @@ const PostDetail = () => {
         boxShadow: "0 8px 30px rgba(0,0,0,0.05)",
       }}
     >
-      <div
+      <button
         onClick={() => window.history.back()}
         style={{
+          background: "#f3f4f6",
+          border: "none",
+          padding: "8px 14px",
+          borderRadius: "8px",
           fontSize: "13px",
-          color: "rgba(0,0,0,0.45)",
-          marginBottom: "30px",
+          color: "#374151",
           cursor: "pointer",
-          display: "inline-block",
+          marginBottom: "30px",
           transition: "all 0.2s ease",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.color = "#2c3e50";
-          e.currentTarget.style.transform = "translateX(-2px)";
+          e.currentTarget.style.background = "#e5e7eb";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.color = "rgba(0,0,0,0.45)";
-          e.currentTarget.style.transform = "translateX(0)";
+          e.currentTarget.style.background = "#f3f4f6";
         }}
       >
         ← 返回列表
-      </div>
+      </button>
 
       <h1
         style={{
