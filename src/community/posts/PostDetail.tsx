@@ -86,12 +86,12 @@ const PostDetail = () => {
       <hr style={{
         margin: "60px 0 40px 0",
         border: "none",
-        borderTop: "3px solid #185adcff"
+        borderTop: "1px solid #185adcff"
       }} />
       {slug && (
         <div
           style={{
-            background: "#215486ff",
+            background: "#f1f1f1ff",
             borderRadius: "16px",
             padding: "30px",
             boxShadow: "0 6px 20px rgba(0,0,0,0.04)",

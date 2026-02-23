@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 interface Comment {
   id: number
   content: string
+  parentId: number | null
 }
 
 interface CommentBoxProps {
@@ -12,9 +13,10 @@ interface CommentBoxProps {
 const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
   const [comments, setComments] = useState<Comment[]>([])
   const [input, setInput] = useState("")
+  const [replyTo, setReplyTo] = useState<number | null>(null)
+
   useEffect(() => {
     fetch(`http://localhost:3001/comments/${postId}`)
-      //the link should be specified in the .env file, and the server should be started separately
       .then(res => res.json())
       .then(setComments)
   }, [postId])
@@ -27,7 +29,10 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: input })
+        body: JSON.stringify({
+          content: input,
+          parentId: replyTo
+        })
       }
     )
 
@@ -35,42 +40,86 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
 
     setComments(prev => [...prev, savedComment])
     setInput("")
+    setReplyTo(null)
+  }
+
+  const renderComments = (parentId: number | null) => {
+    return comments
+      .filter(c => c.parentId === parentId)
+      .map(c => (
+        <div
+          key={c.id}
+          style={{
+            marginLeft: parentId ? "40px" : "0",
+            padding: "20px 0",
+            borderTop: parentId ? "none" : "1px solid #d0ceceff",
+            background: "#ffffff"
+          }}
+        >
+          <div
+            style={{
+              fontSize: "14px",
+              lineHeight: "1.8",
+              color: "#000000"
+            }}
+          >
+            {c.content}
+          </div>
+
+          <button
+            onClick={() => setReplyTo(c.id)}
+            style={{
+              marginTop: "6px",
+              fontSize: "12px",
+              background: "transparent",
+              border: "none",
+              color: "#299aefff",
+              cursor: "pointer"
+            }}
+          >
+            回复
+          </button>
+
+          {renderComments(c.id)}
+        </div>
+      ))
   }
 
   return (
-    <div>
-      <h3 style={{
-        fontSize: "22px",
-        fontWeight: "600",
-        marginBottom: "20px",
-        color: "#e8ebefff"
-      }}>
+    <div style={{ background: "#ffffff", padding: "20px" }}>
+      <h3
+        style={{
+          fontSize: "22px",
+          fontWeight: "600",
+          marginBottom: "20px",
+          color: "#000000"
+        }}
+      >
         评论
       </h3>
 
-      {/* 评论列表 */}
-      <div>
-        {comments.map((c, index) => (
-          <div
-            key={c.id}
-            style={{
-              padding: "20px 0",
-              borderTop: index === 0 ? "none" : "3px solid #e5e7eb",
-            }}
-          >
-            <div style={{
-              fontSize: "14px",
-              lineHeight: "1.8",
-              color: "#b9ccebff"
-            }}>
-              {c.content}
-            </div>
-          </div>
-        ))}
-      </div>
+      <div>{renderComments(null)}</div>
 
-      {/* 输入区域 */}
       <div style={{ marginTop: "30px" }}>
+        {replyTo && (
+          <div style={{ marginBottom: "10px", fontSize: "12px", color: "#000000" }}>
+            正在回复 #{replyTo}
+            <button
+              onClick={() => setReplyTo(null)}
+              style={{
+                marginLeft: "10px",
+                fontSize: "12px",
+                background: "transparent",
+                border: "none",
+                color: "#2389e7ff",
+                cursor: "pointer"
+              }}
+            >
+              取消
+            </button>
+          </div>
+        )}
+
         <textarea
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -82,30 +131,25 @@ const CommentBox: React.FC<CommentBoxProps> = ({ postId }) => {
             fontSize: "14px",
             lineHeight: "1.6",
             borderRadius: "10px",
-            border: "5px solid #e5e7eb",
+            border: "2px solid #b0afafff",
             resize: "vertical",
             marginBottom: "16px",
-            outline: "none"
+            outline: "none",
+            background: "rgba(242, 242, 242, 1)",
+            color: "#000000"
           }}
         />
 
         <button
           onClick={handleSubmit}
           style={{
-            background: "#2563eb",
+            background: "#1a63ebff",
             color: "#ffffff",
             border: "none",
             padding: "10px 18px",
             borderRadius: "8px",
             cursor: "pointer",
-            fontSize: "14px",
-            transition: "all 0.2s ease"
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "#1d4ed8"
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "#2563eb"
+            fontSize: "14px"
           }}
         >
           发送

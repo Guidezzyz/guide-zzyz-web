@@ -2,7 +2,7 @@ import express from "express"
 import cors from "cors"
 import fs from "fs"
 import path from "path"
-//另外开了一个3001端口的服务器来处理评论数据，前端通过fetch请求这个服务器来获取和提交评论数据
+
 const app = express()
 app.use(cors())
 app.use(express.json())
@@ -23,7 +23,7 @@ app.get("/comments/:id", (req, res) => {
   res.json(JSON.parse(data))
 })
 
-// 新增评论
+// 新增评论（支持 parentId）
 app.post("/comments/:id", (req, res) => {
   const filePath = path.join(
     process.cwd(),
@@ -31,7 +31,7 @@ app.post("/comments/:id", (req, res) => {
     `${req.params.id}.json`
   )
 
-  let comments = []
+  let comments: any[] = []
 
   if (fs.existsSync(filePath)) {
     comments = JSON.parse(fs.readFileSync(filePath, "utf-8"))
@@ -39,10 +39,20 @@ app.post("/comments/:id", (req, res) => {
 
   const newComment = {
     id: Date.now(),
-    content: req.body.content
+    content: req.body.content,
+    parentId:
+      req.body.parentId === null || req.body.parentId === undefined
+        ? null
+        : Number(req.body.parentId)
   }
 
   comments.push(newComment)
+
+  const dir = path.dirname(filePath)
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true })
+  }
+
   fs.writeFileSync(filePath, JSON.stringify(comments, null, 2))
 
   res.json(newComment)
