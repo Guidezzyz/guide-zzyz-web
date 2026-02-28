@@ -29,7 +29,7 @@ const PostDetail = () => {
     <div
       style={{
         maxWidth: "800px",
-        margin: "40px auto",
+        margin: "0 auto",
         padding: "40px 24px 80px 24px",
         background: "#ffffff",
         borderRadius: "16px",
@@ -93,8 +93,8 @@ const PostDetail = () => {
           style={{
             background: "#f1f1f1ff",
             borderRadius: "16px",
-            padding: "30px",
-            boxShadow: "0 6px 20px rgba(0,0,0,0.04)",
+            padding: "0px",
+            boxShadow: "0 0px 0px rgba(0,0,0,0.04)",
           }}
         >
 

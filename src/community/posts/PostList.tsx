@@ -20,11 +20,7 @@ const PostList = () => {
   }, []);
 
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "40px 20px 60px 20px" }}>
-      <h2 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "24px", color: "#2c3e50" }}>
-        社区帖子
-      </h2>
-
+    <div style={{ maxWidth: "100%", margin: "0 auto" }}>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         {posts.map((post) => (
           <Link
