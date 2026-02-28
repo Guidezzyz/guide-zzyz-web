@@ -1,4 +1,21 @@
 @import "tailwindcss";
+@font-face {
+  /* 1. 我们给它起个英文代号，避免代码里写中文出 Bug */
+  font-family: 'PianPian';
+  
+  /* 2. 这里的路径非常重要！假设你的 globals.css 也在 src 目录下 */
+  /* 如果你的 css 文件在其他子目录，记得用 ../ 调整层级 */
+  src: url('/fonts/PianPian.otf') format('opentype');
+  
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. 直接创建一个专门的类名，方便在 React 里调用 */
+.font-PianPian {
+  font-family: 'PianPian';
+}
 
 :root {
   --color-primary: #0067D1;

@@ -8,7 +8,6 @@ import { useIsMobile } from "./ui/use-mobile";
 
 export default function Footer() {
   const isMobile = useIsMobile();
-
   return (
     <footer
       style={{
@@ -81,6 +80,18 @@ export default function Footer() {
                   className="hover:text-white transition-colors"
                 >
                   投稿
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/community"
+                  style={{
+                    fontSize: "12px",
+                    color: "rgba(255, 255, 255, 0.7)",
+                  }}
+                  className="hover:text-white transition-colors"
+                >
+                  论坛
                 </a>
               </li>
               <li>
