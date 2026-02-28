@@ -16,6 +16,7 @@ import Hero from "@/assets/home/hero.png";
 import ImageQrCode from "@/assets/home/contact/qr.jpg";
 import ImageGroup from "@/assets/home/net/img-group.png";
 import ImageOfficialAccount from "@/assets/home/net/img-official-account.png";
+import Member1Img from "@/assets/team/zhang.png";
 export default function Home() {
   const [selectedPlatform, setSelectedPlatform] = useState(0);
   const [currentMember, setCurrentMember] = useState(0);
@@ -63,51 +64,39 @@ export default function Home() {
   const teamMembers = [
     {
       name: "张晓明",
-      role: "技术部负责人",
+      role: "技术部",
       university: "清华大学计算机系",
-      description:
-        "负责团队技术架构设计和开发工作，擅长前后端开发和系统优化。曾参与多个大型项目的开发，致力于用技术赋能教育。",
-      avatar: (
-        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg">
-          张
-        </div>
-      ),
+      themeColor: "#0067D1", // 经典科技蓝
+      tags:["可进可退可盐可甜", "除了工科摄影遛狗插花啥都干","国奖获得者"],
+      message: "负责团队技术架构设计和开发工作，擅长前后端开发和系统优化。曾参与多个大型项目的开发，致力于用技术赋能教育。成年人的生活太需要这样的轻松和志趣，我们是线上的好友和伙伴，也是线下的小姐妹、好朋友。如果一定要用一个词来形容我们，那便是松弛与理想并存吧。",
+      avatar: Member1Img, // 直接放图片变量
     },
     {
       name: "李雨晴",
-      role: "宣传部负责人",
+      role: "宣传部",
       university: "北京大学新闻与传播学院",
-      description:
-        "擅长内容策划和新媒体运营，带领团队打造了多个爆款文章。热爱教育事业，希望通过优质内容帮助更多学生找到适合自己的发展道路。",
-      avatar: (
-        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg">
-          李
-        </div>
-      ),
+      themeColor: "#10B981", // 翡翠文艺绿
+      tags:["永远年轻的大三学姐^^","可进可退可盐可甜", "除了工科摄影遛狗插花啥都干","国奖获得者"],
+      message: "擅长内容策划和新媒体运营，带领团队打造了多个爆款文章。热爱教育事业，希望通过优质内容帮助更多学生找到适合自己的发展道路。",
+      avatar: Member1Img, 
     },
     {
       name: "王子轩",
-      role: "文稿部负责人",
+      role: "文稿部",
       university: "复旦大学中文系",
-      description:
-        "负责内容审核和编辑工作，确保每一篇文章的质量。拥有丰富的写作经验，擅长用生动的语言讲述教育故事。",
-      avatar: (
-        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg">
-          王
-        </div>
-      ),
+      themeColor: "#8B5CF6", // 优雅梦幻紫
+      tags:["永远年轻的大三学姐^^", "除了工科摄影遛狗插花啥都干", "可进可退可盐可甜", "国奖获得者"],
+      message: "负责内容审核和编辑工作，确保每一篇文章的质量。拥有丰富的写作经验，擅长用生动的语言讲述教育故事。",
+      avatar: Member1Img,
     },
     {
       name: "陈思琪",
       role: "运营总监",
       university: "上海交通大学管理学院",
-      description:
-        "负责团队整体运营和项目管理，协调各部门工作。具有敏锐的市场洞察力，善于挖掘用户需求，推动团队持续成长。",
-      avatar: (
-        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white text-3xl md:text-4xl font-bold shadow-lg">
-          陈
-        </div>
-      ),
+      themeColor: "#F59E0B", // 活力阳光橙
+      tags:["永远年轻的大三学姐^^", "可进可退可盐可甜", "除了工科摄影遛狗插花啥都干", "国奖获得者"],
+      message: "负责团队整体运营和项目管理，协调各部门工作。具有敏锐的市场洞察力，善于挖掘用户需求，推动团队持续成长。",
+      avatar: Member1Img,
     },
   ];
 
@@ -470,105 +459,263 @@ export default function Home() {
           >
             <h2
               className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black text-center"
-              style={{ marginBottom: "10px" }}
+              style={{ marginBottom: "40px" }}
             >
               核心成员
             </h2>
 
             <div className="relative">
+              <style dangerouslySetInnerHTML={{ __html: `
+                @import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+                .font-art { font-family: 'ZCOOL XiaoWei', serif; letter-spacing: 2px; }
+                .font-story { font-family: 'Noto Serif SC', serif; }
+                .ma-shan-zheng-regular {
+                  font-family: "Ma Shan Zheng", cursive;
+                  font-weight: 400;
+                  font-style: normal;
+                }
+
+                .zhi-mang-xing-regular {
+                  font-family: "Zhi Mang Xing", cursive;
+                  font-weight: 400;
+                  font-style: normal;
+                }
+
+                /* 强制响应式布局 */
+                .member-card-inner {
+                  display: flex;
+                  flex-direction: column; /* 手机端默认上下 */
+                  align-items: center;
+                  gap: 32px;
+                  position: relative;
+                  z-index: 10;
+                }
+                .member-avatar-box {
+                  width: 160px; /* 手机端头像大小 */
+                  height: 160px;
+                  flex-shrink: 0;
+                }
+                
+                @media (min-width: 768px) {
+                  .member-card-inner {
+                    flex-direction: row; /* 电脑端左右排布 */
+                    align-items: stretch;
+                    gap: 48px;
+                  }
+                  .member-avatar-box {
+                    width: 240px; /* 电脑端大头像 */
+                    height: 240px;
+                  }
+                }
+              `}} />
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentMember}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeInOut",
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="relative z-10 bg-white mx-auto overflow-hidden"
+                  style={{ 
+                    marginBottom: "10px", padding: "40px", borderRadius: "32px",
+                    boxShadow: "0 20px 40px -15px rgba(0,0,0,0.08)",
+                    border: "1px solid rgba(255,255,255,0.8)"
                   }}
-                  className="bg-white rounded-2xl md:rounded-3xl lg:rounded-[32px] shadow-xl mx-auto flex items-center"
-                  style={{ marginBottom: "10px", minHeight: "280px", padding: "24px 24px" }}
                 >
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 w-full">
-                    <div className="flex-shrink-0">
-                      {teamMembers[currentMember].avatar}
+                  
+                  <div style={{
+                    position: "absolute", top: 0, right: 0, bottom: 0, left: 0,
+                    background: `
+                      radial-gradient(circle at top right, ${teamMembers[currentMember].themeColor}25 0%, transparent 45%),
+                      radial-gradient(circle at bottom left, ${teamMembers[currentMember].themeColor}10 0%, transparent 35%)
+                    `,
+                    zIndex: 0, pointerEvents: "none",
+                    transition: "background 0.5s ease"
+                  }} />
+
+                  <div className="member-card-inner">
+
+                    {/* === 左侧：头像区 === */}
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: "10px" }}>
+                      <div className="member-avatar-box" style={{ position: "relative" }}>
+                        <div style={{
+                          position: "absolute", top: "-10px", left: "-10px", right: "-10px", bottom: "-10px",
+                          background: `radial-gradient(circle, ${teamMembers[currentMember].themeColor}88 0%, transparent 60%)`,
+                          filter: "blur(15px)", zIndex: 0, borderRadius: "50%",
+                          transition: "background 0.5s ease"
+                        }} />
+                        
+                        <img 
+                          src={teamMembers[currentMember].avatar} 
+                          alt={teamMembers[currentMember].name}
+                          style={{
+                            width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%",
+                            position: "relative", zIndex: 1, border: "4px solid white",
+                            boxShadow: "0 8px 20px rgba(0,0,0,0.1)"
+                          }}
+                        />
+                      </div>
                     </div>
-                    <div className="flex-1 text-center md:text-left">
-                      <h3 className="text-2xl md:text-3xl font-bold text-black mb-2">
-                        {teamMembers[currentMember].name}
-                      </h3>
-                      <p className="text-lg md:text-xl text-[#0067D1] mb-2 font-semibold">
-                        {teamMembers[currentMember].role}
-                      </p>
-                      <p className="text-base md:text-lg text-[#707070] mb-4 flex items-center justify-center md:justify-start gap-2">
-                        <BookOpen className="w-5 h-5" />
-                        {teamMembers[currentMember].university}
-                      </p>
-                      <p className="text-sm md:text-base text-[#707070] leading-relaxed">
-                        {teamMembers[currentMember].description}
-                      </p>
+
+                    {/* === 右侧：内容区 === */}
+                    <div style={{ flex: "1 1 auto", display: "flex", flexDirection: "column", width: "100%" }}>
+                      
+                      <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "24px" }}>
+                        
+                        <div style={{ display: "flex", alignItems: "flex-end", gap: "16px" }}>
+                          <h3 className="ma-shan-zheng-regular" style={{ fontSize: "2.8rem", color: "#1a1a1a", margin: 0, lineHeight: 1 }}>
+                            {teamMembers[currentMember].name}
+                          </h3>
+                          <span style={{ 
+                            fontSize: "2.0rem", fontWeight: 900, margin: 0, lineHeight: 1,
+                            backgroundImage: `linear-gradient(to right, ${teamMembers[currentMember].themeColor}, #00BCD4)`,
+                            WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent"
+                          }}>
+                            「{teamMembers[currentMember].role}」
+                          </span>
+                        </div>
+
+                        <span style={{ 
+                          fontSize: "1.05rem", color: "#64748b", margin: 0, 
+                          lineHeight: 2, fontWeight: 500, letterSpacing: "1px" 
+                        }}>
+                          {teamMembers[currentMember].university}
+                        </span>
+                        
+                      </div>
+
+                      <div style={{ 
+                        display: "flex", 
+                        flexDirection: "column", 
+                        gap: "12px",
+                        marginBottom: "32px", 
+                        width: "100%" 
+                      }}>
+                        {teamMembers[currentMember].tags?.reduce((result: string[][], value, index, array) => {
+                          if (index % 2 === 0) result.push(array.slice(index, index + 2));
+                          return result;
+                        }, []).map((pair, rowIndex) => (
+                          
+                          <div 
+                            key={rowIndex} 
+                            style={{ 
+                              display: "flex", 
+                              flexWrap: "wrap", 
+                              rowGap: "12px", 
+                              columnGap: "clamp(8px, 4vw, 24px)", 
+                              justifyContent: "flex-start" 
+                            }}
+                          >
+                            {pair.map((tag, colIndex) => {
+                              const hexToRgba = (hex: string, alpha: number) => {
+                                const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+                                return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                              };
+                              const glow = hexToRgba(teamMembers[currentMember].themeColor, 0.12);
+                              
+                              return (
+                                <span
+                                  key={colIndex} 
+                                  style={{ 
+                                    display: "inline-block", 
+                                    padding: "6px 32px", 
+                                    fontFamily: "PianPian", 
+                                    fontSize: "0.9rem", 
+                                    color: "#48556a", 
+                                    fontWeight: 400, 
+                                    letterSpacing: "1px",
+                                    background: `linear-gradient(90deg, transparent 0%, ${glow} 20%, ${glow} 80%, transparent 100%)`
+                                  }}
+                                >
+                                  {tag}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="font-story" style={{ 
+                        position: "relative", 
+                        background: "#f8fafc", 
+                        borderRadius: "16px", 
+                        padding: "36px 48px", 
+                        border: "1px solid #f1f5f9"
+                      }}>
+                        <span style={{ 
+                          position: "absolute", top: "12px", left: "16px", 
+                          fontSize: "64px", fontFamily: "Georgia, serif", 
+                          color: teamMembers[currentMember].themeColor,
+                          lineHeight: 1, userSelect: "none", transition: "color 0.5s ease"
+                        }}>
+                          “
+                        </span>
+                        
+                        <p style={{ 
+                          margin: 0, textIndent: "2em", color: "#48556a", 
+                          lineHeight: 1.5, fontFamily:"Zhi Mang Xing",fontSize: "1.5rem", position: "relative", zIndex: 1 
+                        }}>
+                          {teamMembers[currentMember].message}
+                        </p>
+
+                        <span style={{ 
+                          position: "absolute", bottom: "-12px", right: "16px", 
+                          fontSize: "64px", fontFamily: "Georgia, serif", 
+                          color: teamMembers[currentMember].themeColor, 
+                          lineHeight: 1, userSelect: "none", transition: "color 0.5s ease"
+                        }}>
+                          ”
+                        </span>
+                      </div>
+
                     </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation */}
-              <div
-                className="flex justify-center items-center gap-6"
-                style={{ marginTop: "10px" }}
-              >
+              <div className="flex justify-center items-center gap-6 relative z-10" style={{ marginTop: "40px" }}>
                 <motion.button
                   onClick={prevMember}
                   disabled={currentMember === 0}
-                  className={`p-4 md:p-5 rounded-full transition-all ${
-                    currentMember === 0
-                      ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                      : "bg-[#0067D1] text-white hover:bg-[#0052a8] shadow-lg"
-                  }`}
-                  whileHover={
-                    currentMember === 0 ? {} : { scale: 1.1 }
-                  }
-                  whileTap={
-                    currentMember === 0 ? {} : { scale: 0.9 }
-                  }
+                  className="p-4 md:p-5 rounded-full transition-all shadow-md"
+                  style={{
+                    backgroundColor: currentMember === 0 ? "#e2e8f0" : teamMembers[currentMember].themeColor,
+                    color: currentMember === 0 ? "#94a3b8" : "white",
+                    cursor: currentMember === 0 ? "not-allowed" : "pointer"
+                  }}
+                  whileHover={currentMember === 0 ? {} : { scale: 1.1, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}
+                  whileTap={currentMember === 0 ? {} : { scale: 0.9 }}
                 >
                   <ChevronLeft className="w-7 h-7 md:w-8 md:h-8" />
                 </motion.button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   {teamMembers.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentMember(index)}
-                      className={`h-2.5 rounded-full transition-all ${
-                        index === currentMember
-                          ? "w-10 bg-[#0067D1]"
-                          : "w-2.5 bg-slate-300 hover:bg-slate-400"
-                      }`}
+                      className="h-2.5 rounded-full transition-all duration-300"
+                      style={{
+                        width: index === currentMember ? "40px" : "10px",
+                        backgroundColor: index === currentMember ? teamMembers[currentMember].themeColor : "#cbd5e1"
+                      }}
                     />
                   ))}
                 </div>
 
                 <motion.button
                   onClick={nextMember}
-                  disabled={
-                    currentMember === teamMembers.length - 1
-                  }
-                  className={`p-4 md:p-5 rounded-full transition-all ${
-                    currentMember === teamMembers.length - 1
-                      ? "bg-slate-200 text-slate-400 cursor-not-allowed"
-                      : "bg-[#0067D1] text-white hover:bg-[#0052a8] shadow-lg"
-                  }`}
-                  whileHover={
-                    currentMember === teamMembers.length - 1
-                      ? {}
-                      : { scale: 1.1 }
-                  }
-                  whileTap={
-                    currentMember === teamMembers.length - 1
-                      ? {}
-                      : { scale: 0.9 }
-                  }
+                  disabled={currentMember === teamMembers.length - 1}
+                  className="p-4 md:p-5 rounded-full transition-all shadow-md"
+                  style={{
+                    backgroundColor: currentMember === teamMembers.length - 1 ? "#e2e8f0" : teamMembers[currentMember].themeColor,
+                    color: currentMember === teamMembers.length - 1 ? "#94a3b8" : "white",
+                    cursor: currentMember === teamMembers.length - 1 ? "not-allowed" : "pointer"
+                  }}
+                  whileHover={currentMember === teamMembers.length - 1 ? {} : { scale: 1.1, boxShadow: "0 10px 25px -5px rgba(0,0,0,0.2)" }}
+                  whileTap={currentMember === teamMembers.length - 1 ? {} : { scale: 0.9 }}
                 >
                   <ChevronRight className="w-7 h-7 md:w-8 md:h-8" />
                 </motion.button>
